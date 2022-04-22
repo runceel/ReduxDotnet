@@ -2,6 +2,8 @@
 
 This is a just simple but enough implementation Redux for .NET 6.
 
+This is not available on NuGet yet.
+
 ## How to use this
 
 Create state, actions, reducers and effects.
