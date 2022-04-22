@@ -273,3 +273,6 @@ public partial class Counter : IDisposable
 }
 ```
 
+It works as below:
+
+![](./Assets/blazorwasm.gif)
