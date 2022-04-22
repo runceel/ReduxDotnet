@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{E5EB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReduxDotnetSample", "Samples\ReduxDotnetSample\ReduxDotnetSample.csproj", "{EA30D54B-46C3-47B5-9D72-F82D0CC22EF3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReduxDotnetConsoleSample", "Samples\ReduxDotnetConsoleSample\ReduxDotnetConsoleSample.csproj", "{A8ED3388-3ED8-44CE-BBCD-6233F34FE389}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,12 +30,17 @@ Global
 		{EA30D54B-46C3-47B5-9D72-F82D0CC22EF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA30D54B-46C3-47B5-9D72-F82D0CC22EF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA30D54B-46C3-47B5-9D72-F82D0CC22EF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8ED3388-3ED8-44CE-BBCD-6233F34FE389}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8ED3388-3ED8-44CE-BBCD-6233F34FE389}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8ED3388-3ED8-44CE-BBCD-6233F34FE389}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8ED3388-3ED8-44CE-BBCD-6233F34FE389}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{EA30D54B-46C3-47B5-9D72-F82D0CC22EF3} = {E5EB24A1-BCC8-4145-ACED-CE5B172112F6}
+		{A8ED3388-3ED8-44CE-BBCD-6233F34FE389} = {E5EB24A1-BCC8-4145-ACED-CE5B172112F6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {28E14FAF-B0AD-4C15-99B6-3D7070A69537}
