@@ -2,7 +2,7 @@
 
 This is a just simple but enough implementation Redux for .NET 6.
 
-This is not available on NuGet yet.
+https://www.nuget.org/packages/ReduxDotnet
 
 ## How to use this
 

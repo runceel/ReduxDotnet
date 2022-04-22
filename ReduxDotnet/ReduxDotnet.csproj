@@ -14,6 +14,7 @@
         <RepositoryUrl>https://github.com/runceel/ReduxDotnet</RepositoryUrl>
         <PackageTags>Redux;Rx;ReactiveProperty</PackageTags>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <GenerateDocumentationFile>True</GenerateDocumentationFile>
     </PropertyGroup>
 
     <ItemGroup>
