@@ -1,0 +1,16 @@
+﻿@page "/counter"
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+<div>
+    <label for="amount">Amount</label>
+    <input id="amount" type="text" @bind="Amount" />
+</div>
+
+<p role="status">Current count: @CurrentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Increment</button>
+<button class="btn btn-primary" @onclick="DecrementCount">Decrement</button>
+<button class="btn btn-primary" @onclick="IncrementCountAfterTwoSecondsAsync">Increment (Async)</button>
