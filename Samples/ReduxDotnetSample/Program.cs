@@ -12,7 +12,7 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 builder.Services.AddReduxDotnet(new AppState(0));
-builder.Services.AddReducer<AppReducers>();
+builder.Services.AddReducer<AppState, AppReducers>();
 builder.Services.AddSingleton<AppEffects>();
 
 await builder.Build().RunAsync();

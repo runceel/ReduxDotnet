@@ -40,13 +40,13 @@ public partial class Counter : IDisposable
 
     public void Dispose() => _disposables.Dispose();
 
-    private void IncrementCount()
+    private async Task IncrementCount()
     {
-        Dispatcher.Dispatch(new IncrementAction(Amount));
+        await Dispatcher.DispatchAsync(new IncrementAction(Amount));
     }
-    private void DecrementCount()
+    private async Task DecrementCount()
     {
-        Dispatcher.Dispatch(new DecrementAction(Amount));
+        await Dispatcher.DispatchAsync(new DecrementAction(Amount));
     }
 
     private async Task IncrementCountAfterTwoSecondsAsync()

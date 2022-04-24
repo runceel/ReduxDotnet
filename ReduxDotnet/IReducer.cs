@@ -1,16 +1,11 @@
 ﻿namespace ReduxDotnet;
 
 /// <summary>
-/// A marker interface for reducers.
-/// </summary>
-public interface IReducer { }
-
-/// <summary>
 /// Reducer interface.
 /// </summary>
 /// <typeparam name="TStore">Type of application store.</typeparam>
 /// <typeparam name="TAction">Type of action.</typeparam>
-public interface IReducer<TStore, TAction> : IReducer
+public interface IReducer<TStore, TAction>
 {
     /// <summary>
     /// Reducer logic.

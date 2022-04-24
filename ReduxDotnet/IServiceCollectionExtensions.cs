@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Reactive.Bindings;
 
 namespace ReduxDotnet;
@@ -20,40 +15,35 @@ public static class IServiceCollectionExtensions
         self.AddSingleton<IReactiveProperty<TStore>>(
             new ReactivePropertySlim<TStore>(initialState));
         self.AddSingleton<IDispatcher<TStore>, Dispatcher<TStore>>();
+        self.AddSingleton<IDispatcherHandler<TStore>, EffectHandler<TStore>>();
         return self;
     }
 
-    public static IServiceCollection AddReducer<TReducer>(
+    public static IServiceCollection AddReducer<TStore, TReducer>(
         this IServiceCollection self,
         Func<IServiceProvider, TReducer> factory,
         ServiceLifetime reducerLifetime = ServiceLifetime.Singleton)
-        where TReducer : class, IReducer
+        where TReducer : class
     {
         self.Add(new ServiceDescriptor(typeof(TReducer), factory, reducerLifetime));
-        self.AddReducerCore<TReducer>(reducerLifetime);
+        self.AddReducerCore<TStore, TReducer>(reducerLifetime);
         return self;
     }
 
-    public static IServiceCollection AddReducer<TReducer>(
+    public static IServiceCollection AddReducer<TStore, TReducer>(
         this IServiceCollection self,
         ServiceLifetime reducerLifetime = ServiceLifetime.Singleton)
-        where TReducer : class, IReducer
+        where TReducer : class
     {
         self.Add(new ServiceDescriptor(typeof(TReducer), typeof(TReducer), reducerLifetime));
-        self.AddReducerCore<TReducer>(reducerLifetime);
+        self.AddReducerCore<TStore, TReducer>(reducerLifetime);
         return self;
     }
 
-    private static void AddReducerCore<TReducer>(
-        this IServiceCollection self, 
-        ServiceLifetime reducerLifetime) where TReducer : class, IReducer
+    private static void AddReducerCore<TStore, TReducer>(
+        this IServiceCollection self,
+        ServiceLifetime reducerLifetime) where TReducer : class
     {
-        var descriptors = typeof(TReducer).GetInterfaces()
-            .Where(x => x.IsGenericType && x.GetGenericTypeDefinition() == typeof(IReducer<,>))
-            .Select(x => new ServiceDescriptor(x, p => p.GetRequiredService<TReducer>(), reducerLifetime));
-        foreach (var d in descriptors)
-        {
-            self.Add(d);
-        }
+        self.AddSingleton<IDispatcherHandler<TStore>, ActionHandler<TStore, TReducer>>();
     }
 }

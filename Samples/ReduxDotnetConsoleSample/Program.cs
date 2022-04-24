@@ -6,7 +6,7 @@ var services = new ServiceCollection();
 // init ReduxDotnet with initial status
 services.AddReduxDotnet<AppState>(new AppState(0));
 // Add reducers and effects
-services.AddReducer<Reducers>();
+services.AddReducer<AppState, Reducers>();
 services.AddSingleton<Effects>();
 
 var provider = services.BuildServiceProvider();
@@ -26,8 +26,9 @@ dispatcher.Dispatch(new IncrementAction());
 dispatcher.Dispatch(new DecrementAction());
 
 // Async operation
-await dispatcher.DispatchAsync(effects.IncrementLater());
+dispatcher.Dispatch(effects.IncrementLater());
 
+Console.ReadKey();
 
 // Define app state
 record AppState(int Count);
@@ -41,7 +42,7 @@ class Reducers :
     IReducer<AppState, IncrementAction>,
     IReducer<AppState, DecrementAction>
 {
-    public AppState Invoke(AppState store, IncrementAction action) => 
+    public AppState Invoke(AppState store, IncrementAction action) =>
         store with { Count = store.Count + 1 };
 
     public AppState Invoke(AppState store, DecrementAction action) =>
@@ -51,9 +52,9 @@ class Reducers :
 // Define effects (If you want to use async operation)
 class Effects
 {
-    public EffectDelegate<AppState> IncrementLater() => async (d, _) =>
+    public EffectDelegate<AppState> IncrementLater() => async d =>
     {
         await Task.Delay(2000);
-        d.Dispatch(new IncrementAction());
+        await d.DispatchAsync(new IncrementAction());
     };
 }

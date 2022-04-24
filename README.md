@@ -31,7 +31,7 @@ class Reducers :
 // Define effects (If you want to use async operation)
 class Effects
 {
-    public EffectDelegate<AppState> IncrementLater() => async (d, _) =>
+    public EffectDelegate<AppState> IncrementLater() => async (d) =>
     {
         await Task.Delay(2000);
         d.Dispatch(new IncrementAction());
@@ -50,7 +50,7 @@ var services = new ServiceCollection();
 // init ReduxDotnet with initial status
 services.AddReduxDotnet<AppState>(new AppState(0));
 // Add reducers and effects
-services.AddReducer<Reducers>();
+services.AddReducer<AppState, Reducers>();
 services.AddSingleton<Effects>();
 
 var provider = services.BuildServiceProvider();
@@ -161,7 +161,7 @@ namespace ReduxDotnetSample.Effects;
 
 public class AppEffects
 {
-    public EffectDelegate<AppState> IncrementAsync(int amount) => async (dispatcher, _) =>
+    public EffectDelegate<AppState> IncrementAsync(int amount) => async (dispatcher) =>
     {
         await Task.Delay(2000);
         dispatcher.Dispatch(new IncrementAction(amount));
@@ -177,7 +177,7 @@ All implementations were finished! The last step is that registering all to `ISe
 // Register IReactiveProperty<AppState> and IDispatcher<AppState> as singleton.
 builder.Services.AddReduxDotnet(new AppState(0));
 // Register Reducers for Dispatcher.
-builder.Services.AddReducer<AppReducers>();
+builder.Services.AddReducer<AppState, AppReducers>();
 // Effects are plain C# classes, so you can register to IServiceCollection same as other classes.
 builder.Services.AddSingleton<AppEffects>();
 ```

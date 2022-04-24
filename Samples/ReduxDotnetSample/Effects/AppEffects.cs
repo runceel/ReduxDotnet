@@ -6,9 +6,9 @@ namespace ReduxDotnetSample.Effects;
 
 public class AppEffects
 {
-    public EffectDelegate<AppState> IncrementAsync(int amount) => async (dispatcher, _) =>
+    public EffectDelegate<AppState> IncrementAsync(int amount) => async dispatcher =>
     {
         await Task.Delay(2000);
-        dispatcher.Dispatch(new IncrementAction(amount));
+        await dispatcher.DispatchAsync(new IncrementAction(amount));
     };
 }
