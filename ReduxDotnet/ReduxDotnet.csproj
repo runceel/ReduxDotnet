@@ -5,7 +5,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-        <VersionPrefix>0.1.0</VersionPrefix>
+        <VersionPrefix>0.2.0</VersionPrefix>
         <Authors>Kazuki Ota</Authors>
         <Description>Type safe Redux implementation for .NET 6.</Description>
         <Copyright>Copyright © 2022 Kazuki Ota. All Rights Reserved.</Copyright>
